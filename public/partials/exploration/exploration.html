@@ -1,0 +1,62 @@
+<!--<div class="loader-block" ng-if="$root.borrowerDetails.length == 0 || $root.statsData.length == 0">-->
+<div class="loader-block" ng-if="showLoader == true">
+    Loading
+    <span class="dot-one">.</span>
+    <span class="dot-two">.</span>
+    <span class="dot-three">.</span>
+</div>
+<div class="header">
+
+    <div class="widget yellow-widget text-center pull-right">
+        <div class="widget-icon-sm">
+            <span class="icon-borrowers"></span>
+        </div>
+        <div class="widget-title">
+            No. of Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.borrowerDetails[0]['NUMBER_OF_BORROWERS']}}
+        </div>
+    </div>
+
+    <div class="widget red-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="widget green-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Non-Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.non_risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="h1">Exploration</div>
+
+    <ul ng-init="explorationTab = 1" class="tabs-horizontal">
+        <li ng-click="explorationTab = 1" ng-class="{activeTab:explorationTab == 1}"> Data </li>
+        <li ng-click="explorationTab = 2;loadUsMapData()" ng-class="{activeTab:explorationTab == 2}"> Visualization </li>
+    </ul>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="content-block">
+    <div class="tabs-horizontal-container fullHeight">
+        <div class="fullHeight" ng-if="explorationTab == 1" ng-include onload="finishLoading()" src="'partials/exploration/data.html'"></div>
+        <div class="fullHeight" ng-if="explorationTab == 2" ng-include onload="finishLoading()" ng-include src="'partials/exploration/graphs.html'"></div>
+    </div>
+</div>

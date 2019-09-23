@@ -1,0 +1,1 @@
+{"status":true,"msg":"query executed","data":{"schema":[{"field":"NUMBER_OF_BORROWERS","alias":"NUMBER_OF_BORROWERS","position":0,"type":"long"}],"data":[{"NUMBER_OF_BORROWERS":"25600"}]}}

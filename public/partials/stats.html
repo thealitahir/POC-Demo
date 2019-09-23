@@ -1,0 +1,124 @@
+<div class="header">
+
+    <div class="widget yellow-widget text-center pull-right">
+        <div class="widget-icon-sm">
+            <span class="icon-borrowers"></span>
+        </div>
+        <div class="widget-title">
+            No. of Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.borrowerDetails[0]['NUMBER_OF_BORROWERS']}}
+        </div>
+    </div>
+
+    <div class="widget red-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="widget green-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Non-Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.non_risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="h1">Model Stats</div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="content-block stats-container">
+    <div class="stats-col-sm">
+        <div class="yield-block">
+            <div class="h3">Yield Predictor</div>
+            <div class="text-right">
+                <label>Coefficient of determination:</label>
+                <span>{{regressionMetrics['coefficient of determination (R2)']}}</span>
+            </div>
+
+            <div class="yield-info-table">
+                <table class="table noMargins">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>MAE</th>
+                        <th>&radic;<span style="text-decoration: overline">Mean Squared</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <th>Error</th>
+                        <td>{{regressionMetrics['mean absolute error']}}</td>
+                        <td>{{regressionMetrics['root mean squared error']}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="yield-info-table-block">
+                <div class="h3">Rating Predictor</div>
+                <div class="text-right">
+                    <label>Accuracy:</label>
+                    <span>{{multiClassAccuracy}}</span>
+                </div>
+                <div class="yield-info-table noMargins">
+                    <table class="table noMargins">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F-measure</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="lstats in label_stats">
+                            <th>{{lstats['PROSPERRATING_NUMERIC']}}</th>
+                            <td>{{lstats.precision | singleDecimal}}</td>
+                            <td>{{lstats.recall | singleDecimal}}</td>
+                            <td>{{lstats['f-measure'] | singleDecimal}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="stats-col-md">
+        <div class="graph-block-stats">
+            <continuous-histogram-for-model-stats ng-if="$root.LendersYield.schema.length > 0" result = "$root.LendersYield"></continuous-histogram-for-model-stats>
+        </div>
+
+        <div class="graph-block-stats">
+            <scattered-graph ng-if="$root.YieldVsDebt_to_Income.schema.length > 0" result = "$root.YieldVsDebt_to_Income"></scattered-graph>
+        </div>
+        <div class="graph-block-stats">
+            <column-graph-for-model-stats ng-if="$root.YieldVsRating.schema.length > 0" result = "$root.YieldVsRating"></column-graph-for-model-stats>
+        </div>
+        <!--<div class="graph-block-stats">-->
+        <multiple-continuous-histogram-for-model-stats ng-if="$root.LendersYieldForDifferentTerms.data1.schema.length > 0 && $root.LendersYieldForDifferentTerms.data2.schema.length > 0 && $root.LendersYieldForDifferentTerms.data3.schema.length > 0" result = "$root.LendersYieldForDifferentTerms"></multiple-continuous-histogram-for-model-stats>
+        <!--</div>-->
+
+        <div class="map-block-wrap-stats" >
+            <div id="statsMap"  class="map-block-stats"></div>
+        </div>
+    </div>
+</div>

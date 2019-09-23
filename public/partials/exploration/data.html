@@ -1,0 +1,23 @@
+<!--<div class="loader-block" ng-if="statsData.length == 0">
+    Loading
+    <span class="dot-one">.</span>
+    <span class="dot-two">.</span>
+    <span class="dot-three">.</span>
+</div>-->
+<div class="theme-table-green" ng-if="$root.statsData.schema.length > 0">
+    <table class="table table-responsive noMargins">
+        <thead>
+        <tr>
+            <th ng-repeat="fieldProps in statsData.schema">
+                {{fieldProps.alias}}
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="dataObj in $root.statsData.data">
+            <td ng-repeat="fields in $root.statsData.schema">{{dataObj[fields.field] | singleDecimal}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

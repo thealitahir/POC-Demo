@@ -1,0 +1,1 @@
+{"status":true,"msg":"query executed","data":{"schema":[{"field":"TERM","alias":"TERM","position":0,"type":"string"},{"field":"COUNT","alias":"COUNT","position":1,"type":"long"}],"data":[{"TERM":"12","COUNT":"1414"},{"TERM":"36","COUNT":"52505"},{"TERM":"60","COUNT":"22849"}]}}

@@ -1,0 +1,104 @@
+<div class="loader-block" ng-if="showLoaders">
+    Loading
+    <span class="dot-one">.</span>
+    <span class="dot-two">.</span>
+    <span class="dot-three">.</span>
+</div>
+
+<div class="header">
+
+    <div class="widget yellow-widget text-center pull-right">
+        <div class="widget-icon-sm">
+            <span class="icon-borrowers"></span>
+        </div>
+        <div class="widget-title">
+            No. of Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.borrowerDetails[0]['NUMBER_OF_BORROWERS']}}
+        </div>
+    </div>
+
+    <div class="widget red-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="widget green-widget text-center pull-right">
+        <div class="widget-icon">
+            <span class="icon-percentage"></span>
+        </div>
+        <div class="widget-title">
+            Non-Risky Borrowers
+        </div>
+        <div class="widget-text">
+            {{$root.non_risky | singleDecimal}} %
+        </div>
+    </div>
+
+    <div class="h1">Investment Portfolio</div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="content-block risk-level-container">
+    <ng-form name="sliderForm">
+        <div class="form-group clearfix">
+            <label class="col-sm-2">Enter Amount </label>
+            <div class="col-sm-3">
+                <input class="rounded-field" ng-model="portfolio.amount" ng-pattern="/^\d+$/" name="amount" placeholder="Amount" required/>
+                <span ng-show="sliderForm.amount.$error.pattern" class="alert-danger">Please enter a valid number</span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-sm-2">Select Risk Level</label>
+            <div class="col-sm-5 theme-slider">
+                <div range-slider min="1" max='7' step="1" show-values="true" attach-handle-values="true" model-max="portfolio.range" pin-handle="min"></div>
+            </div>
+        </div>
+        <div class="form-group clearfix" style="margin-bottom: 25px;">
+            <div class="col-sm-2 col-lg-offset-2">
+                <button class="btn btn-cyan" ng-click="getPortfolioWithInput()" ng-disabled="sliderForm.$invalid">Top Borrowers</button>
+            </div>
+        </div>
+    </ng-form>
+
+    <div class="theme-table-dark-green">
+        <table class="table table-responsive noMargins">
+            <thead>
+
+            <tr>
+                <th ng-repeat="fieldProps in portfolio.schema track by $index">
+                    <label>{{fieldProps.field}}</label>
+               </th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="dataObj in portfolio.data track by $index">
+                <td ng-repeat="fields in portfolio.schema track by $index" title="{{dataObj[fields.field]}}">
+                    <div ng-if="fields.field!='LISTINGKEY'">
+                        {{dataObj[fields.field] | singleDecimal}}
+
+                    </div>
+                    <div ng-if="fields.field=='LISTINGKEY'">
+                        {{dataObj[fields.field] }}
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

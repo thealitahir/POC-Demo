@@ -1,0 +1,1 @@
+{"status":true,"msg":"query executed","data":{"schema":[{"field":"INCOMEVERIFIABLE","alias":"INCOMEVERIFIABLE","position":0,"type":"string"},{"field":"COUNT","alias":"COUNT","position":1,"type":"long"}],"data":[{"INCOMEVERIFIABLE":"False","COUNT":"199"},{"INCOMEVERIFIABLE":"True","COUNT":"25401"}]}}

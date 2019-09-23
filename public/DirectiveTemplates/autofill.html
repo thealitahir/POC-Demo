@@ -1,0 +1,31 @@
+<style>
+
+    .noTopBottomPad
+
+    {
+
+        padding-top : 2px !important;
+
+        padding-bottom : 2px !important;
+
+    }
+
+    .overlap {position: absolute !important;
+
+        z-index: 900 !important; width: inherit  !important ;}
+
+    .loadImage { background: white url('{!URLFOR($Resource.AutoCompleteWithModal, 'AjaxLoad.gif')}') right center no-repeat; }
+
+</style>
+
+<input id="Search" type="text" class="form-control" ng-model="model" placeholder="{{prompt}}"  ng-KeyPress="da(model)" ng-keydown="selected=false" />
+<br/>
+
+<div class="items" ng-hide="!model.length || selected">
+    <div class="item" ng-repeat="item in TypeAheadData | filter:model  track by $index" ng-click="handleSelection(item.firstname, $index)" style="cursor:pointer"  ng-mouseenter="setCurrent($index)" on-select="onSelect()">
+        <p class="title"> {{item.firstname}} {{item.lastname}}</p>
+<!--
+        <p class="subtitle">{{item[subtitle]}}</p>
+-->
+    </div>
+</div>

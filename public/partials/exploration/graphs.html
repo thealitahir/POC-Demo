@@ -1,0 +1,36 @@
+<!--<div class="loader-block" ng-if="$root.ListingCategory.length == 0">
+    Loading
+    <span class="dot-one">.</span>
+    <span class="dot-two">.</span>
+    <span class="dot-three">.</span>
+</div>-->
+
+<div class="exploration-graph-lg">
+    <continuous-histogram-graph ng-if="$root.DebtToIncomeRatio.schema.length > 0" result = "$root.DebtToIncomeRatio"></continuous-histogram-graph>
+</div>
+
+<div class="exploration-graph-sm">
+    <polar-graph ng-if="$root.IncomeRange.schema.length > 0" result = "$root.IncomeRange"></polar-graph>
+</div>
+
+
+<div class="exploration-graph-md">
+    <column-chart ng-if="$root.ListingCategory.schema.length > 0" result = "$root.ListingCategory"></column-chart>
+</div>
+
+<div class="exploration-graph-sm">
+    <donut-graph ng-if="$root.BorrowerRating.schema.length > 0" result = "$root.BorrowerRating"></donut-graph>
+</div>
+
+<div class="exploration-graph-sm">
+    <pie-chart ng-if="$root.LengthOfLoan.schema.length > 0" result = "$root.LengthOfLoan"></pie-chart>
+</div>
+
+<div class="exploration-graph-lg">
+    <continuous-histogram-chart ng-if="$root.BorrowerRate.schema.length > 0" result = "$root.BorrowerRate"></continuous-histogram-chart>
+</div>
+
+<div class="exploration-graph-lg">
+    <heatmap-chart ng-if="$root.BorrowersPerState.schema.length > 0 && $root.usMapData" result = "$root.BorrowersPerState"></heatmap-chart>
+</div>
+

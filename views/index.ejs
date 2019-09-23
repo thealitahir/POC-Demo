@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html ng-app="webApp" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>PWC: Analytics</title>
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,300italic,400italic,600,600italic,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <link href="css/gis/leaflet.css" rel="stylesheet">
+    <link href="css/gis/Control.OSMGeocoder.css" rel="stylesheet">
+    <link href="css/gis/Control.FullScreen.css" rel="stylesheet">
+    <link href="css/gis/leaflet-routing-machine.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/datetimepicker.css' />
+    <link rel='stylesheet' href='/css/bootstrap.min.css.map' />
+    <!--<link rel='stylesheet' href='css/angular.easypiechart.css' />-->
+
+    <!-- Custom styles for this template -->
+    <link href="css/template.css" rel="stylesheet">
+    <link href="css/custom-font-icons.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/angular.rangeSlider.css' />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+    <script type = "text/javascript">
+        var exploration = <%- JSON.stringify(exploration) %>;
+        var stats = <%- JSON.stringify(stats) %>;
+    </script>
+
+</head>
+<body>
+
+<!--<div class="loader-block">
+    Loading
+    <span class="dot-one">.</span>
+    <span class="dot-two">.</span>
+    <span class="dot-three">.</span>
+</div>-->
+
+<div class="container">
+
+    <div class="fixed-container">
+
+        <div class="left-nav">
+
+            <div class="logo">
+                <img src="images/logo-analytics.png" alt="logo" />
+            </div>
+
+            <ul>
+                <li class="orange" ui-sref-active="active">
+                    <a ui-sref="exploration">
+                        Exploration
+                    </a>
+                </li>
+                <li class="red" ui-sref-active="active">
+                    <a ui-sref="stats">
+                        Stats
+                    </a>
+                </li>
+                <li class="blue" ui-sref-active="active">
+                    <a ui-sref="portfolio">
+                        Investment Portfolio
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content" ui-view></div>
+
+    </div>
+
+</div><!-- /.container -->
+
+<script src="js/gis/leaflet.js"></script>
+<script src="js/gis/leaflet-routing-machine.js"></script>
+<script src="js/gis/Control.FullScreen.js"></script>
+<script src="js/gis/Control.OSMGeocoder.js"></script>
+<!-- common libraries. required for every page-->
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery.pjax.js"></script>
+
+<script src="js/jquery/jquery.slimscroll.min.js"></script>
+<script src="js/widgster.js"></script>
+<script src="js/pace.js" data-pace-options='{ "target": ".content-wrap", "ghostTime": 1000 }'></script>
+<script src="js/jquery/jquery.touchSwipe.js"></script>
+<script src="js/jquery/jquery.touchSwipe.js"></script>
+<script src="js/morris/morris.js"></script>
+
+<!-- common app js -->
+<script src="js/settings.js"></script>
+<script src="js/angular/angular.min.js"></script>
+<script src="js/angular/angular-ui-router.min.js"></script>
+<script src="js/app.js"></script>
+<script src="app.js"></script>
+<script src="js/dateTimePicker/moment.js"></script>
+<script src="js/dateTimePicker/datetimepicker.js"></script>
+
+<!-- page specific libs -->
+<script id="test" src="js/underscore.js"></script>
+<script src="js/jquery/jquery.sparkline.js"></script>
+
+<script src="js/d3.min.js"></script>
+<script src="js/rickshaw.min.js"></script>
+<script src="/js/d3/nova.js"></script>
+<script src="/js/d3/packages.js"></script>
+
+<!--d3-->
+<script src="/js/graphs/d3/hierarchy.js"></script>
+<script src="/directives/hierarchyChart.js"></script>
+<script src="/js/graphs/d3/hierarchicalEdge.js"></script>
+<script src="/directives/hierarchicalEdgeChart.js"></script>
+
+<script src="js/jquery/jquery.flot.js"></script>
+<script src="js/raphael-min.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/exporting.js"></script>
+<script src="js/heatmap.js"></script>
+<script src="js/jquery/jquery.mapael.js"></script>
+<script src="js/maps/usa_states.js"></script>
+<script src="js/maps/world_countries.js"></script>
+<script src="js/jquery/jquery.animateNumber.min.js"></script>
+
+<script src="controllers/explorerController.js"></script>
+<script src="controllers/portfolioController.js"></script>
+<script src="controllers/statsController.js"></script>
+
+<script src="js/graphs/highchart/column.js"></script>
+<script src="js/graphs/highchart/line.js"></script>
+<script src="js/graphs/highchart/pie.js"></script>
+<script src="directives/highCharts/column.js"></script>
+<script src="directives/highCharts/line.js"></script>
+<script src="directives/highCharts/pie.js"></script>
+<script src="directives/highCharts/histogram.js"></script>
+<script src="js/angular.easypiechart.js"></script>
+<script src='js/slider/angular.rangeSlider.js'></script>
+
+<script src="services/services.js"></script>
+<script src="filters/decimalSetting.js"></script>
+<script src="vendor/jquery.sparkline/index.js"></script>
+<script src="vendor/skycons/skycons.js"></script>
+
+<script src="js/MetroJs.js"></script>
+<script src="js/skycons.js"></script>
+
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/bootstrap/ie10-viewport-bug-workaround.js"></script>
+
+<script src="directives/graphs/highcharts/ExplorationGraphs/continuousHistogram.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/columnRange.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/polarChart.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/semiDonut.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/donutChart.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/columnChart.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/pieChart.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/heatmap.js"></script>
+<script src="directives/graphs/highcharts/ExplorationGraphs/continuousHistogram2.js"></script>
+
+<script src="directives/graphs/highcharts/modelStatsGraphs/continuousHistogram.js"></script>
+<script src="directives/graphs/highcharts/modelStatsGraphs/multipleContinuousScatterHistograms.js"></script>
+<script src="directives/graphs/highcharts/modelStatsGraphs/scatterPlot.js"></script>
+<script src="directives/graphs/highcharts/modelStatsGraphs/columnChart.js"></script>
+
+</body>
+</html>
